@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CadastroVeiculos.Models.Veiculo>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<div class="cima">
+	<div class="botao">
+		<p>
+			<a href="@Url.Content("~/Veiculo/Create")" class="btn btn-success">Adicionar</a>
+		</p>
+	</div>
+	<div class="campoBusca">
+		<input type="text" id="txtBusca" class="form-control" placeholder="Buscar" />
+	</div>
+</div>
+
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>
+				Responsável
+			</th>
+			<th>
+				Categoria
+			</th>
+			<th>
+				Descrição
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Ano)
+			</th>
+			<th style="text-align: center;">Ações</th>
+		</tr>
+	</thead>
+	<tbody id="tbVeiculo">
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Funcionario.Nome)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Categoria.Descricao)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Frota)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Ano)
+				</td>
+				<td style="text-align: center;">
+					<a href="@Url.Content("~/Veiculo/Edit/" + item.Id)" class="btn btn-primary">Editar</a>
+					<a href="@Url.Content("~/Veiculo/Details/" + item.Id)" class="btn btn-info">Detalhes</a>
+					<a href="@Url.Content("~/Veiculo/Delete/" + item.Id)" class="btn btn-danger">Remover</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+
+</table>
+
+<style scoped>
+	.cima {
+		display: flex;
+	}
+		.cima .botao {
+			flex: 1;
+			text-align: left;
+		}
+
+		.cima .campoBusca {
+			text-align: right;
+		}
+</style>
+
+<script type="text/javascript">
+	$("#txtBusca").on("keyup", function () {
+		var value = $(this).val().toLowerCase();
+		$("#tbVeiculo tr").filter(function () {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+</script>

@@ -1,0 +1,64 @@
+﻿@model CadastroVeiculos.Models.Veiculo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+	<h4>Detalhes do Veículo</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			Categoria
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Categoria.Descricao)
+		</dd>
+
+		<dt>
+			Responsável
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Funcionario.Nome)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Placa)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Placa)
+		</dd>
+
+		<dt>
+			Descrição
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Frota)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Ano)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Ano)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.DataAquisicao)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.DataAquisicao)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	<a href="@Url.Content("~/Veiculo/Edit/" + Model.Id)" class="btn btn-success">Editar</a>
+	<a href="@Url.Content("~/")" class="btn btn-primary">Voltar</a>
+</p>
